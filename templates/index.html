@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Twitter Sentiment Analyzer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <h1 class="title">💬 Tweet Sentiment Analyzer</h1>
+      
+      <form action="{{ url_for('y_predict') }}" method="post" class="form">
+        <input type="text" name="Sentence" placeholder="Type a tweet or sentence..." required>
+        <button type="submit" class="btn">Analyze Sentiment</button>
+      </form>
+
+      {% if image %}
+        <div class="result">
+          <img src="{{ url_for('static', filename='giphy3.gif') }}" alt="Positive vibes" class="result-img">
+          <p class="positive">{{ prediction_text }}</p>
+        </div>
+      {% elif image2 %}
+        <div class="result">
+          <img src="{{ url_for('static', filename='giphy2.gif') }}" alt="Negativity" class="result-img">
+          <p class="negative">{{ prediction_text }}</p>
+        </div>
+      {% else %}
+        <p class="hint">Enter a tweet and discover the emotion behind it!</p>
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>
